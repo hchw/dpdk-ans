@@ -150,7 +150,7 @@ static int ans_kni_change_mtu(uint16_t port_id, unsigned int new_mtu)
         return -EINVAL;
     } 
 
-    if (new_mtu > ETHER_MAX_LEN)
+    if (new_mtu > RTE_ETHER_MAX_LEN)
         return -EINVAL;
 
     /* Set new MTU */
@@ -183,7 +183,7 @@ int ans_kni_set_mac(char *name, uint8_t port)
     int ret = -1;  
     struct ifreq temp;  
     struct sockaddr* addr;  
-    struct ether_addr eth_addr;
+    struct rte_ether_addr eth_addr;
 
     rte_eth_macaddr_get(port, &eth_addr);
 
@@ -197,7 +197,7 @@ int ans_kni_set_mac(char *name, uint8_t port)
     addr = (struct sockaddr*)&temp.ifr_hwaddr;  
 
     addr->sa_family = ARPHRD_ETHER;  
-    memcpy(addr->sa_data, eth_addr.addr_bytes, ETHER_ADDR_LEN);  
+    memcpy(addr->sa_data, eth_addr.addr_bytes, RTE_ETHER_ADDR_LEN);  
 
     ret = ioctl(fd, SIOCSIFHWADDR, &temp);  
     if(ret != 0)
@@ -259,7 +259,7 @@ static int ans_kni_alloc(uint8_t port_id)
     }
     
     /* Get the interface default mac address */
-    rte_eth_macaddr_get(port_id,(struct ether_addr *)&conf.mac_addr);
+    rte_eth_macaddr_get(port_id,(struct rte_ether_addr *)&conf.mac_addr);
     rte_eth_dev_get_mtu(port_id, &conf.mtu);
             
     memset(&ops, 0, sizeof(ops));

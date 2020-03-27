@@ -147,7 +147,7 @@ void ans_eth_stats(uint8_t portid, uint16_t packets_nb, uint16_t droped_nb);
  * @return  0 - SUCCESS, non-zero - FAILURE
  *
  */
-int ans_iface_add(uint8_t port, uint16_t kni_index, char *if_name, struct ether_addr *mac_addr);
+int ans_iface_add(uint8_t port, uint16_t kni_index, char *if_name, struct rte_ether_addr *mac_addr);
 
 /**
  * Delete an interface.

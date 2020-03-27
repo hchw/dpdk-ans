@@ -512,7 +512,7 @@ int ans_parse_args(int argc, char **argv, struct ans_user_config *user_conf)
                 }
                 else
                 {
-                    user_conf->max_rx_pkt_len = ETHER_MAX_LEN;
+                    user_conf->max_rx_pkt_len = RTE_ETHER_MAX_LEN;
                 }
                 
                 printf("set jumbo frame max packet length to %u\n", (unsigned int)user_conf->max_rx_pkt_len);

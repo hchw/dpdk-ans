@@ -95,7 +95,7 @@ static struct rte_eth_conf ans_port_conf =
   .rxmode =
    {
     .mq_mode = ETH_MQ_RX_RSS,
-    .max_rx_pkt_len = ETHER_MAX_LEN,
+    .max_rx_pkt_len = RTE_ETHER_MAX_LEN,
     .split_hdr_size = 0,
   },
   .rx_adv_conf =
@@ -467,7 +467,7 @@ static int ans_init_ports(struct ans_user_config  *user_conf, struct ans_lcore_c
     uint8_t nb_rx_queue =0;
     uint8_t queue, socketid;
     uint32_t n_tx_queue, nb_lcores;
-    struct ether_addr eth_addr;
+    struct rte_ether_addr eth_addr;
     struct rte_eth_dev_info dev_info;
     struct rte_eth_txconf *txconf;
     struct rte_eth_rxconf *rxconf;
@@ -1089,7 +1089,7 @@ int main(int argc, char **argv)
     uint8_t ifname[16];
     int portid;
     uint16_t kni_id;
-    struct ether_addr eth_addr;
+    struct rte_ether_addr eth_addr;
     uint16_t qmapping_nb;
     struct rte_eth_dev_info dev_info;
     
